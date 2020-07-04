@@ -1,0 +1,350 @@
+$testobject {
+	$declarations '''
+		/*
+		 * This is a declaration.
+		 */
+	'''
+	$definitions '''
+		/*
+		 * This is a definition.
+		 */
+	'''
+	$prolog '''
+		/* Testobject Prolog */
+	'''
+
+	$testcase 1 {
+		$name "Simple"
+		$uuid "62437e0e-7988-47df-9978-a6c5353e544b"
+		$specification """
+			- Range Start:Positive
+			- Range Length:Positive
+			- Position:Inside
+			  - Position in Range:Middle
+		"""
+		$description """
+			The normal combinations using positive numbers for range and position. The normal combinations using positive numbers for range and position 2. The normal combinations using positive numbers for range and position 3. The normal combinations using positive numbers for range and position 4.
+		"""
+		$comment """
+			This
+			is
+			ö
+			comment.
+		"""
+		$prolog '''
+			/* Testcase Prolog 1 */
+		'''
+
+		$teststep 1.1 {
+			$name ""
+			$uuid "2e6ab11b-397f-4acb-9b19-197df217163c"
+			$prolog '''
+				/* Teststep Prolog 1.1 */
+			'''
+			$inputs {
+				r1 {
+					range_start = 10
+					range_len = 20
+				}
+				v1 = 15
+			}
+			$outputs {
+				return yes
+			}
+			$calltrace {
+				*** Ignore Call Trace ***
+			}
+			$epilog '''
+				/* Teststep Epilog 1.1 */
+			'''
+		}
+		$epilog '''
+			/* Testcase Epilog 1 */
+		'''
+	}
+
+	$testcase 2 {
+		$name ""
+		$uuid "73a45c93-d4f3-47b9-a2b6-fb6873b8fd79"
+		$specification """
+			- Range Start:Positive
+			- Range Length:Positive
+			- Position:Outside
+			  - Where ?:Above
+		"""
+
+		$teststep 2.1 {
+			$name ""
+			$uuid "7284ba1b-6d6d-4ef6-aaae-b31641b67dd8"
+			$inputs {
+				r1 {
+					range_start = 3
+					range_len = 5
+				}
+				v1 = 20
+			}
+			$outputs {
+				return no
+			}
+			$calltrace {
+				*** Ignore Call Trace ***
+			}
+		}
+	}
+
+	$testcase 3 {
+		$name ""
+		$uuid "1d94c343-f92c-48b8-8e97-c1e579c88dcd"
+		$specification """
+			- Range Start:Zero
+			- Range Length:Positive
+			- Position:Inside
+			  - Position in Range:Upper Border
+		"""
+
+		$teststep 3.1 {
+			$name ""
+			$uuid "d2b9bf23-936a-4429-9212-2009da4aea2b"
+			$inputs {
+				r1 {
+					range_start = 0
+					range_len = 5
+				}
+				v1 = 5
+			}
+			$outputs {
+				return yes
+			}
+			$calltrace {
+				*** Ignore Call Trace ***
+			}
+		}
+	}
+
+	$testcase 4 {
+		$name ""
+		$uuid "6853d4a0-b123-4162-9d18-3ff4914a025c"
+		$specification """
+			- Range Start:Negative
+			- Range Length:Positive
+			- Position:Inside
+			  - Position in Range:Lower Border
+		"""
+
+		$teststep 4.1 {
+			$name ""
+			$uuid "830e7c79-e3a9-48b4-8905-967402f987a6"
+			$inputs {
+				r1 {
+					range_start = -13
+					range_len = 10
+				}
+				v1 = -12
+			}
+			$outputs {
+				return yes
+			}
+			$calltrace {
+				*** Ignore Call Trace ***
+			}
+		}
+	}
+
+	$testcase 5 {
+		$name "Length=0"
+		$uuid "93b6b8e0-e308-4ef5-904a-11696ea23a67"
+		$specification """
+			- Range Start:Positive
+			- Range Length:Zero
+			- Position:Outside
+			  - Where ?:Above
+		"""
+		$description """
+			Special case: Length of range equals zero.
+		"""
+
+		$teststep 5.1 {
+			$name ""
+			$uuid "f46be1a1-2230-432e-a1c7-5c06e660ed78"
+			$inputs {
+				r1 {
+					range_start = 50
+					range_len = 0
+				}
+				v1 = 60
+			}
+			$outputs {
+				return no
+			}
+			$calltrace {
+				*** Ignore Call Trace ***
+			}
+		}
+	}
+
+	$testcase 6 {
+		$name ""
+		$uuid "4c972824-98c5-4225-a6f4-38c21be78cef"
+		$specification """
+			- Range Start:Zero
+			- Range Length:Zero
+			- Position:Outside
+			  - Where ?:Below
+		"""
+
+		$teststep 6.1 {
+			$name ""
+			$uuid "1b9da4d8-0f8d-4aff-bb09-863c00202c02"
+			$inputs {
+				r1 {
+					range_start = 0
+					range_len = 0
+				}
+				v1 = -1
+			}
+			$outputs {
+				return no
+			}
+			$calltrace {
+				*** Ignore Call Trace ***
+			}
+		}
+	}
+
+	$testcase 7 {
+		$name ""
+		$uuid "507fa0bb-c5dc-41eb-b240-e3dd09350867"
+		$specification """
+			- Range Start:Negative
+			- Range Length:Zero
+			- Position:Inside
+			  - Position in Range:Middle
+		"""
+
+		$teststep 7.1 {
+			$name ""
+			$uuid "7a72f42d-3e0e-48b6-9126-a1488de9da4f"
+			$inputs {
+				r1 {
+					range_start = -7
+					range_len = 0
+				}
+				v1 = -7
+			}
+			$outputs {
+				return yes
+			}
+			$calltrace {
+				*** Ignore Call Trace ***
+			}
+		}
+	}
+
+	$testcase 8 {
+		$name "Special"
+		$uuid "19f6e075-7284-446a-89fb-b04b680274a6"
+		$specification """
+			- Range Start:Positive
+			- Range Length:Negative
+			- Position:Inside
+			  - Position in Range:Middle
+		"""
+		$description """
+			More sophisticated tests.
+		"""
+
+		$teststep 8.1 {
+			$name "Test Step 8.1"
+			$uuid "93af69e3-58ea-418b-95ae-ae400974d13a"
+			$specification """
+				Specification 8.1
+			"""
+			$description """
+				Description 8.1
+			"""
+			$comment """
+				Comment 8.1
+			"""
+			$inputs {
+				r1 {
+					range_start = 42
+					range_len = -50
+				}
+				v1 = 20
+			}
+			$outputs {
+				return yes
+			}
+			$calltrace {
+				*** Ignore Call Trace ***
+			}
+		}
+	}
+
+	$testcase 9 {
+		$name ""
+		$uuid "45b6e32a-48e6-4c14-b417-127bb55f34f8"
+		$specification """
+			- Range Start:Negative
+			- Range Length:Negative
+			- Position:Inside
+			  - Position in Range:Upper Border
+		"""
+
+		$teststep 9.1 {
+			$name ""
+			$uuid "e7b5d060-d533-4c4d-8247-67beaa601005"
+			$inputs {
+				r1 {
+					range_start = -42
+					range_len = -10
+				}
+				v1 = -43
+			}
+			$outputs {
+				return yes
+			}
+			$calltrace {
+				*** Ignore Call Trace ***
+			}
+		}
+	}
+
+	$testcase 10 {
+		$name ""
+		$uuid "e8536e8f-99f7-444b-828e-af3025bcbb0a"
+		$specification """
+			- Range Start:Zero
+			- Range Length:Negative
+			- Position:Outside
+			  - Where ?:Above
+		"""
+
+		$teststep 10.1 {
+			$name "Test Step 10.1"
+			$uuid "95354004-4d8c-4758-9969-23237e8bd8e9"
+			$specification """
+				Specification 10.1
+			"""
+			$description """
+				Description 10.1
+			"""
+			$inputs {
+				r1 {
+					range_start = 0
+					range_len = -20
+				}
+				v1 = 1
+			}
+			$outputs {
+				return no
+			}
+			$calltrace {
+				*** Ignore Call Trace ***
+			}
+		}
+	}
+	$epilog '''
+		/* Testobject Epilog */
+	'''
+}
